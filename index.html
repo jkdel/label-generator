@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CodeFlask.js -- Simple code editor for awesome web pages.</title>
+  
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="codeflask.css">
+  <link rel="stylesheet" href="prism.css">
+
+</head>
+<body>
+  <div class="code-editor">
+    // Feel free to play with the code. :)
+    function Hey(phrase)
+    {
+      phrase = phrase || "Hey";
+      return console.log(phrase);
+    }
+
+    window.onLoad = function() {
+      Hey();
+      Hey("Jude");
+      Hey("Don't make it bad.");
+    }
+  </div>
+
+  <script>
+    window.onload = function() {
+      CodeFlask.run('.code-editor', 'javascript')
+    };
+  </script>
+  <script src="codeflask.js"></script>
+  <script src="prism.js"></script>
+</body>
+</html>
