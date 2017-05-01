@@ -1,39 +1,92 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CodeFlask.js -- Simple code editor for awesome web pages.</title>
-  
-  <meta name="description" content="">
+  <title>Label generator</title>
+  <meta name="description" content="A simple javascript scratchpad I use to generate label names.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="codeflask.css">
-  <link rel="stylesheet" href="prism.css">
-
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="codemirror.css">
+  <link rel=stylesheet href="style.min.css">
+  <link rel="stylesheet" href="material.css">
+  <script src="codemirror.js"></script>
+  <script src="javascript.js"></script>
+  <script src="active-line.js"></script>
+  <script src="matchbrackets.js"></script>
 </head>
 <body>
-  <div class="code-editor">
-    // Feel free to play with the code. :)
-    function Hey(phrase)
-    {
-      phrase = phrase || "Hey";
-      return console.log(phrase);
-    }
+<header>
+<h1>Welcome to the Label generator!</h1>
+<p>Basically, this is just <strong>a simple javascript scratchpad</strong>. With
+the default code you can use it to generate labels for specific purposes and
+export them into a csv file (that can be used with MS Word's mailing tool, to
+print the labels, more details <a>here</a>). Feel free to <strong>edit the
+code</strong> and write your own algorithm. What you write is evaluated when you
+click the "<a href="#generate">Generate</a>" button. Be aware that your code could crash your browser or
+computer, so <strong>do not paste random things here!</strong></p>
+</header>
+<section>
+<div class="code-area">
+<textarea id="code-editor">
+// User defined variables //////////////////////////////////////////////////////
+// Labels for one patient (without patient id):
+var labels = {"-W04-OGT-P-pre" : 10,
+              "-W04-OGT-S-pre" : 4,
+              "-W04-OGT-P-+30" : 9,
+              "-W04-OGT-S-+30" : 4,
+              "-W04-OGT-P-+60" : 7,
+              "-W04-OGT-S-+60" : 4,
+              "-W04-OGT-P-+120": 7,
+              "-W04-OGT-S-+120": 4,
+              "-W04-OGT-P-+180": 7,
+              "-W04-OGT-S-+180": 4,
+              "-W04-OGT-P-+240": 7,
+              "-W04-OGT-S-+240": 4}
 
-    window.onLoad = function() {
-      Hey();
-      Hey("Jude");
-      Hey("Don't make it bad.");
-    }
-  </div>
+// Number of patients
+var n_patients = 10
 
-  <script>
-    window.onload = function() {
-      CodeFlask.run('.code-editor', 'javascript')
-    };
-  </script>
-  <script src="codeflask.js"></script>
-  <script src="prism.js"></script>
+// Number of cells to leave empty (if you want to print the labels on a sheet
+// where some labels were already used)
+var n_empty = 0
+
+// Loop to create and export the labels ////////////////////////////////////////
+var pad_length = n_patients.toString().length
+
+function pad (str, max) {
+  return str.length < max ? pad("0" + str, max) : str;
+}
+
+// Set column header, use "Name" because it works with MS Word's Mailing tool
+var csv = "Name\n";
+
+for (i=0; i < n_empty; i++) {
+	csv += "\n";
+}
+
+for (i = 1; i < n_patients+1; i++) {
+    for (j in labels) {
+        for (k = 0; k < labels[j];k++) {
+            csv += pad(i.toString(),pad_length)+j+"\n";
+        }
+    }
+}
+
+document.location = 'data:text/csv,' + encodeURIComponent(csv);</textarea>
+</div>
+<p class="gen"><a id="generate" class="button noselect" onclick="eval(editor.getValue())">Generate!</a></p>
+</section>
+<footer><p>This page relies on <a href="http://codemirror.net/">CodeMirror</a> and
+<a href="https://pages.github.com/">GitHub Pages</a>. The sources are available on <a href="https://github.com/jkdel/label-generator">GitHub</a>.</p></footer>
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    theme: "material",
+    viewportMargin: Infinity
+  });
+</script>
 </body>
 </html>
