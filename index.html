@@ -6,14 +6,7 @@
   <title>Label generator</title>
   <meta name="description" content="A simple javascript scratchpad I use to generate label names.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="codemirror.css">
-  <link rel=stylesheet href="style.min.css">
-  <link rel="stylesheet" href="material.css">
-  <script src="codemirror.js"></script>
-  <script src="javascript.js"></script>
-  <script src="active-line.js"></script>
-  <script src="matchbrackets.js"></script>
+  <link rel="stylesheet" href="full.min.css">
 </head>
 <body>
 <header>
@@ -79,6 +72,10 @@ document.location = 'data:text/csv,' + encodeURIComponent(csv);</textarea>
 </section>
 <footer><p>This page relies on <a href="http://codemirror.net/">CodeMirror</a> and
 <a href="https://pages.github.com/">GitHub Pages</a>. The sources are available on <a href="https://github.com/jkdel/label-generator">GitHub</a>.</p></footer>
+<script src="codemirror.js"></script>
+<script src="javascript.js"></script>
+<script src="active-line.js"></script>
+<script src="matchbrackets.js"></script>
 <script>
   var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
     lineNumbers: true,
