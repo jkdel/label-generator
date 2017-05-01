@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="full.min.css">
 </head>
 <body>
+<div id="error-notify"><p id="error-notify-p"></p></div>
 <header>
 <h1>Welcome to the Label generator!</h1>
 <p>Basically, this is just <strong>a simple javascript scratchpad</strong>. With
@@ -68,7 +69,7 @@ for (i = 1; i < n_patients+1; i++) {
 
 document.location = 'data:text/csv,' + encodeURIComponent(csv);</textarea>
 </div>
-<p class="gen"><a id="generate" class="button noselect" onclick="eval(editor.getValue())">Generate!</a></p>
+<p class="gen"><a id="generate" class="button noselect" onclick="eval_code()">Generate!</a></p>
 </section>
 <footer><p>This page relies on <a href="http://codemirror.net/">CodeMirror</a> and
 <a href="https://pages.github.com/">GitHub Pages</a>. The sources are available on <a href="https://github.com/jkdel/label-generator">GitHub</a>.</p></footer>
@@ -77,6 +78,14 @@ document.location = 'data:text/csv,' + encodeURIComponent(csv);</textarea>
 <script src="active-line.js"></script>
 <script src="matchbrackets.js"></script>
 <script>
+  function eval_code() {
+    try {
+      document.getElementById("error-notify-p").innerHTML = "";
+      eval(editor.getValue());
+    } catch (e) {
+      document.getElementById("error-notify-p").innerHTML = "Error on line "+e.lineNumber+": "+e.message;
+    }
+  }
   var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
     lineNumbers: true,
     styleActiveLine: true,

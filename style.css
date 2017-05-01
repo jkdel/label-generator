@@ -73,4 +73,18 @@ footer p {
   height: auto;
   margin: 0 8% 0 8%;
   line-height: 18px;
+  z-index: 80;
+}
+#error-notify {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #C4688A;
+  margin: 0;
+  z-index: 100;
+}
+
+#error-notify-p {
+  margin: 0 8%;
+  text-align: center;
 }
