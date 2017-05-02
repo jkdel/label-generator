@@ -23,7 +23,7 @@ a {
 }
 header {
   padding-bottom: 20px;
-  border-bottom: 10px #44a4a5 solid;
+  /*border-bottom: 10px #44a4a5 solid;*/
 }
 header p {
   text-align: justify;
@@ -31,10 +31,6 @@ header p {
 footer p {
   text-align: center;
   margin-top: 50px;
-}
-.code-area {
-  background-color: #263238;
-  border-bottom: 2px #44a4a5 solid;
 }
 .gen {
   margin-top: 20px;
@@ -49,8 +45,6 @@ footer p {
   border-radius: 3px;
   border: none;
   color: #fff;
-  /*display: block;*/
-  /*margin-bottom: 1rem;*/
   padding: 10px;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
@@ -74,12 +68,13 @@ footer p {
   margin: 0 8% 0 8%;
   line-height: 18px;
   z-index: 80;
+  border-radius: 4px;
 }
 #error-notify {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #C4688A;
+  background-color: #44a4a5;
   margin: 0;
   z-index: 100;
 }
