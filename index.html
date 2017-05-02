@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +8,7 @@
   <title>Label generator</title>
   <meta name="description" content="A simple javascript scratchpad I use to generate label names.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="full.min.css">
+  <link rel="stylesheet" href="css/full.min.css">
 </head>
 <body>
 <div id="error-notify"><p id="error-notify-p"></p></div>
@@ -22,61 +24,16 @@ computer, so <strong>do not paste random things here!</strong></p>
 </header>
 <section>
 <div class="code-area">
-<textarea id="code-editor">
-// User defined variables //////////////////////////////////////////////////////
-// Labels for one patient (without patient id):
-var labels = {"-W04-OGT-P-pre" : 10,
-              "-W04-OGT-S-pre" : 4,
-              "-W04-OGT-P-+30" : 9,
-              "-W04-OGT-S-+30" : 4,
-              "-W04-OGT-P-+60" : 7,
-              "-W04-OGT-S-+60" : 4,
-              "-W04-OGT-P-+120": 7,
-              "-W04-OGT-S-+120": 4,
-              "-W04-OGT-P-+180": 7,
-              "-W04-OGT-S-+180": 4,
-              "-W04-OGT-P-+240": 7,
-              "-W04-OGT-S-+240": 4}
-
-// Number of patients
-var n_patients = 10
-
-// Number of cells to leave empty (if you want to print the labels on a sheet
-// where some labels were already used)
-var n_empty = 0
-
-// Loop to create and export the labels ////////////////////////////////////////
-var pad_length = n_patients.toString().length
-
-function pad (str, max) {
-  return str.length < max ? pad("0" + str, max) : str;
-}
-
-// Set column header, use "Name" because it works with MS Word's Mailing tool
-var csv = "Name\n";
-
-for (i=0; i < n_empty; i++) {
-	csv += "\n";
-}
-
-for (i = 1; i < n_patients+1; i++) {
-    for (j in labels) {
-        for (k = 0; k < labels[j];k++) {
-            csv += pad(i.toString(),pad_length)+j+"\n";
-        }
-    }
-}
-
-document.location = 'data:text/csv,' + encodeURIComponent(csv);</textarea>
+<textarea id="code-editor">{% include default_code.js %}</textarea>
 </div>
 <p class="gen"><a id="generate" class="button noselect" onclick="eval_code()">Generate!</a></p>
 </section>
 <footer><p>This page relies on <a href="http://codemirror.net/">CodeMirror</a> and
 <a href="https://pages.github.com/">GitHub Pages</a>. The sources are available on <a href="https://github.com/jkdel/label-generator">GitHub</a>.</p></footer>
-<script src="codemirror.js"></script>
-<script src="javascript.js"></script>
-<script src="active-line.js"></script>
-<script src="matchbrackets.js"></script>
+<script src="js/codemirror.js"></script>
+<script src="js/javascript.js"></script>
+<script src="js/active-line.js"></script>
+<script src="js/matchbrackets.js"></script>
 <script>
   function eval_code() {
     try {
