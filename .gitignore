@@ -1,0 +1,6 @@
+_site
+vendor
+Gemfile
+Gemfile.lock
+.bundle
+.git
