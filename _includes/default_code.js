@@ -1,5 +1,6 @@
 // User defined variables //////////////////////////////////////////////////////
-// Each distinct label for one patient (without patient id) followed by the number of repetitions:
+// Each distinct label for one patient (without patient id) followed by the
+// number of repetitions:
 var labels = {"-W04-OGT-P-pre" : 10,
               "-W04-OGT-S-pre" : 4,
               "-W04-OGT-P-+30" : 9,
@@ -14,7 +15,7 @@ var labels = {"-W04-OGT-P-pre" : 10,
               "-W04-OGT-S-+240": 4};
 
 // Number of patients
-var n_patients = 10;
+var n_patients = 20;
 
 // Number of cells to leave empty (if you want to print the labels on a sheet
 // where some labels were already used)
@@ -30,9 +31,10 @@ function pad (str, max) {
 // Set column header, use "Name" because it works with MS Word's Mailing tool
 var csv = "Name\n";
 
-// Create empty cells
+// Create empty cells, these have to filled with a tilde (or any other
+// character), otherwise the microsoft word labelling tool removes those cells
 for (i=0; i < n_empty; i++) {
-	csv += "\n";
+	csv += "~\n";
 }
 
 // Loop to create and export the labels
