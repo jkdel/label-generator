@@ -27,6 +27,9 @@ var labels = {"-W08-OGT-P-pre" : 3,
               "-W04-OGT-LiH-PK-+240": 1};
 
 // Number of patients
+// The patients are defined in an arry so that you can remove some of them, here
+// patient 18 no longer belongs to the study. You could also define the patients
+// from 10 to 23 or however you like.
 var n_patients = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20];
 
 // Number of cells to leave empty (if you want to print the labels on a sheet
